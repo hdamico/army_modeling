@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_231620) do
+ActiveRecord::Schema.define(version: 2019_07_03_214209) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "armies", force: :cascade do |t|
     t.string "name"
+    t.integer "coins", default: 1000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "civilization_id"
-    t.integer "coins", default: 1000
     t.index ["civilization_id"], name: "index_armies_on_civilization_id"
   end
 
   create_table "civilizations", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.hstore "default_units", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_07_03_231620) do
   end
 
   create_table "units", force: :cascade do |t|
-    t.decimal "points"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "army_id"

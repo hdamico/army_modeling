@@ -3,10 +3,6 @@ class Army < ApplicationRecord
   has_many :units, dependent: :destroy
   after_create :create_units
 
-  CHINESE_DEFAULT_UNITS = [2, 25, 2].freeze
-  ENLGISH_DEFAULT_UNITS = [10, 10, 10].freeze
-  BYZANTINE_DEFAULT_UNITS = [5, 8, 15].freeze
-
   def to_battle!(enemy)
     ally_points = 0
     enemy_points = 0
@@ -28,14 +24,7 @@ class Army < ApplicationRecord
   private
 
   def create_units
-    case civilization.name
-    when 'Chinese'
-      Unit.generate_default_units(self, CHINESE_DEFAULT_UNITS)
-    when 'English'
-      Unit.generate_default_units(self, ENLGISH_DEFAULT_UNITS)
-    when 'Byzantine'
-      Unit.generate_default_units(self, BYZANTINE_DEFAULT_UNITS)
-    end
+    
   end
 
   def who_is_the_winner?(ally, enemy)

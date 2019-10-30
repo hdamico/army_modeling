@@ -1,0 +1,50 @@
+2019-10-29 23:27:37.173 -03 [94781] FATAL:  lock file "postmaster.pid" already exists
+2019-10-29 23:27:37.173 -03 [94781] HINT:  Is another postmaster (PID 94741) running in data directory "/usr/local/var/postgres"?
+2019-10-29 23:27:58.430 -03 [95002] LOG:  listening on IPv6 address "::1", port 5432
+2019-10-29 23:27:58.430 -03 [95002] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-10-29 23:27:58.430 -03 [95002] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-10-29 23:27:58.441 -03 [95003] LOG:  database system was shut down at 2019-10-29 23:27:51 -03
+2019-10-29 23:27:58.444 -03 [95002] LOG:  database system is ready to accept connections
+2019-10-29 23:28:06.224 -03 [95058] FATAL:  role "postgres" does not exist
+2019-10-30 00:27:27.386 -03 [97909] ERROR:  relation "spearmen" does not exist at character 566
+2019-10-30 00:27:27.386 -03 [97909] STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
+	                     c.collname, col_description(a.attrelid, a.attnum) AS comment
+	                FROM pg_attribute a
+	                LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	                LEFT JOIN pg_type t ON a.atttypid = t.oid
+	                LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
+	               WHERE a.attrelid = '"spearmen"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+2019-10-30 00:29:44.493 -03 [98122] ERROR:  column "type_id" of relation "units" already exists
+2019-10-30 00:29:44.493 -03 [98122] STATEMENT:  ALTER TABLE "units" ADD "type_id" bigint
+2019-10-30 00:29:57.978 -03 [98188] ERROR:  relation "spearmen" does not exist at character 566
+2019-10-30 00:29:57.978 -03 [98188] STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
+	                     c.collname, col_description(a.attrelid, a.attnum) AS comment
+	                FROM pg_attribute a
+	                LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	                LEFT JOIN pg_type t ON a.atttypid = t.oid
+	                LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
+	               WHERE a.attrelid = '"spearmen"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+2019-10-30 00:30:57.371 -03 [98188] ERROR:  relation "spearmen" does not exist at character 566
+2019-10-30 00:30:57.371 -03 [98188] STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
+	                     c.collname, col_description(a.attrelid, a.attnum) AS comment
+	                FROM pg_attribute a
+	                LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	                LEFT JOIN pg_type t ON a.atttypid = t.oid
+	                LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
+	               WHERE a.attrelid = '"spearmen"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+2019-10-30 00:32:00.159 -03 [95002] LOG:  received smart shutdown request
+2019-10-30 00:32:00.161 -03 [95002] LOG:  background worker "logical replication launcher" (PID 95009) exited with exit code 1
+2019-10-30 00:32:00.161 -03 [95004] LOG:  shutting down
+2019-10-30 00:32:00.186 -03 [95002] LOG:  database system is shut down
