@@ -1,6 +1,8 @@
 class Army < ApplicationRecord
   belongs_to :civilization
-  has_many :units, dependent: :destroy
+  has_many :knights
+  has_many :archers
+  has_many :spearmen
   after_create :create_units
 
   def to_battle!(enemy)
@@ -24,7 +26,9 @@ class Army < ApplicationRecord
   private
 
   def create_units
-    
+    civilization.default_units.each do |u|
+      
+    end
   end
 
   def who_is_the_winner?(ally, enemy)

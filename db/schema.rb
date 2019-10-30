@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_214209) do
+ActiveRecord::Schema.define(version: 2019_10_30_194720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "archers", force: :cascade do |t|
+    t.integer "points", default: 8
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "armies", force: :cascade do |t|
     t.string "name"
@@ -32,23 +38,17 @@ ActiveRecord::Schema.define(version: 2019_07_03_214209) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "name"
+  create_table "knights", force: :cascade do |t|
+    t.integer "points", default: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "units", force: :cascade do |t|
-    t.integer "points"
+  create_table "spearmen", force: :cascade do |t|
+    t.integer "points", default: 5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "army_id"
-    t.bigint "type_id"
-    t.index ["army_id"], name: "index_units_on_army_id"
-    t.index ["type_id"], name: "index_units_on_type_id"
   end
 
   add_foreign_key "armies", "civilizations"
-  add_foreign_key "units", "armies"
-  add_foreign_key "units", "types"
 end
