@@ -10,7 +10,9 @@ class Civilization < ApplicationRecord
   private
 
   def valid_name
-    errors[:base] << 'Invalid name. Choose between Chinese, Byzantine or English' unless CIVILIZATIONS.include?(name.upcase)
+    unless CIVILIZATIONS.include?(name.upcase)
+      errors[:base] << 'Invalid name. Choose between Chinese, Byzantine or English'
+    end
   end
 
   def set_default_units

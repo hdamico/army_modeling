@@ -1,6 +1,6 @@
 class Unit < ApplicationRecord
   belongs_to :army
-  belongs_to :type
+  validate :unit_type
 
   def upgrade
     coins = army.coins if army.coins >= 0
@@ -59,17 +59,19 @@ class Unit < ApplicationRecord
     end
   end
 
-  def self.generate_default_units(army, units_array)
-    type = 1
-    points = 5
-    values = []
-    units_array.each do |unit|
-      unit.times do
-        values << { army_id: army.id, type_id: type, points: points }
-      end
-      Unit.import values
-      type += 1
-      points *= 2
+  def self.generate_default(units)
+    units.each do |k, v|
+      v.to_i.times { Unit.create(unit_type: k, points: TYPES.fetch(k.to_sym)) }
+    end
+  end
+
+  private
+
+  TYPES = { archer: 8, spearman: 5, knight: 10 }.freeze
+
+  def unit_type
+    unless TYPES.include?(unit_type.downcase.to_sym)
+      errors[:base] << 'Invalid type. Choose between Archer, Spearman or Knight'
     end
   end
 end

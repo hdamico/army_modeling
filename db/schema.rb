@@ -10,17 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_194720) do
+ActiveRecord::Schema.define(version: 2019_10_31_020815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
-
-  create_table "archers", force: :cascade do |t|
-    t.integer "points", default: 8
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "armies", force: :cascade do |t|
     t.string "name"
@@ -38,17 +32,15 @@ ActiveRecord::Schema.define(version: 2019_10_30_194720) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "knights", force: :cascade do |t|
-    t.integer "points", default: 10
+  create_table "units", force: :cascade do |t|
+    t.string "unit_type"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "spearmen", force: :cascade do |t|
-    t.integer "points", default: 5
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "army_id"
+    t.index ["army_id"], name: "index_units_on_army_id"
   end
 
   add_foreign_key "armies", "civilizations"
+  add_foreign_key "units", "armies"
 end
