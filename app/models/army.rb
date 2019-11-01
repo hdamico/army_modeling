@@ -1,8 +1,7 @@
 class Army < ApplicationRecord
   belongs_to :civilization
   has_many :units
-  before_create :generate_default_units
-  after_create :create_units
+  after_create :generate_default_units
 
   # def to_battle!(enemy)
   #   ally_points = 0
@@ -32,10 +31,6 @@ class Army < ApplicationRecord
   
   def get_defaults
     DEFAULTS.detect { |k, v| k == civilization.name.to_sym }[1]
-  end
-
-  def valid_type
-    errors[:base] << 'Invalid type. Choose between Archer, Spearman or Knight' unless TYPES.include?(type.upcase)
   end
 
   # def who_is_the_winner?(ally, enemy)

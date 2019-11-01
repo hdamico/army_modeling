@@ -1,7 +1,6 @@
 class Unit < ApplicationRecord
   belongs_to :army
   validate :unit_type
-  before_create :set_type
 
   # def upgrade
   #   coins = army.coins if army.coins >= 0

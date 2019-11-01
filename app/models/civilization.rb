@@ -1,7 +1,7 @@
 class Civilization < ApplicationRecord
   has_many :armies, dependent: :destroy
-  validate :valid_name
   validates_uniqueness_of :name, case_sensitive: false
+  validate :valid_name
   before_update :no_editable
 
   private
