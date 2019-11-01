@@ -23,14 +23,8 @@ class Army < ApplicationRecord
 
   private
 
-  DEFAULTS = { CHINESE: [25, 2, 2], BYZANTINE: [10, 10, 10], ENGLISH: [5, 8, 15] }
-
   def generate_army
-    units.generate_default_units(get_defaults)
-  end
-  
-  def get_defaults
-    DEFAULTS[civilization.name.to_sym]
+    units.generate_default_units(civilization.default_units)
   end
 
   # def who_is_the_winner?(ally, enemy)

@@ -1,10 +1,8 @@
 class CreateCivilizations < ActiveRecord::Migration[5.2]
   def change
-    enable_extension 'hstore'
-
     create_table :civilizations do |t|
       t.string :name, null: false
-      t.hstore :default_units, default: {}
+      t.text :default_units, array: true, default: []
 
       t.timestamps
     end
