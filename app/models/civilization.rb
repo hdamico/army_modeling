@@ -16,14 +16,7 @@ class Civilization < ApplicationRecord
   end
 
   def set_default_units
-    case name.upcase
-    when 'CHINESE'
-      self.default_units = { spearman: 2, archer: 25, knight: 2 }
-    when 'BYZANTINE'
-      self.default_units = { spearman: 10, archer: 10, knight: 10 }
-    when 'ENGLISH'
-      self.default_units = { spearman: 5, archer: 8, knight: 15 }
-    end
+    Unit.generate_default(civilization.name)
   end
 
   def no_editable
