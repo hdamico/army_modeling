@@ -1,7 +1,7 @@
 class Army < ApplicationRecord
   belongs_to :civilization
   has_many :units
-  after_create :generate_default_units
+  after_create :generate_army
 
   # def to_battle!(enemy)
   #   ally_points = 0
@@ -25,12 +25,12 @@ class Army < ApplicationRecord
 
   DEFAULTS = { CHINESE: [25, 2, 2], BYZANTINE: [10, 10, 10], ENGLISH: [5, 8, 15] }
 
-  def generate_default_units
-    units.generate_default(get_defaults)
+  def generate_army
+    units.generate_default_units(get_defaults)
   end
   
   def get_defaults
-    DEFAULTS.detect { |k, v| k == civilization.name.to_sym }[1]
+    DEFAULTS[civilization.name.to_sym]
   end
 
   # def who_is_the_winner?(ally, enemy)

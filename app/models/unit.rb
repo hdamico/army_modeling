@@ -1,6 +1,13 @@
 class Unit < ApplicationRecord
   belongs_to :army
-  validate :unit_type
+
+  UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight]
+
+  def self.generate_default_units(units)
+    units.each_with_index do |u, idx|
+      u.times { UNIT_TYPES[idx].constantize.create }
+    end
+  end
 
   # def upgrade
   #   coins = army.coins if army.coins >= 0
@@ -58,14 +65,4 @@ class Unit < ApplicationRecord
   #     puts("You don't have enough coins!")
   #   end
   # end
-
-  private
-
-  TYPES = %w[Units::Archer Units::Spearman Units::Knight].freeze
-
-  def unit_type
-    unless TYPES.include?(self.class.to_s)
-      errors[:base] << 'Invalid type. Choose between Archer, Spearman or Knight'
-    end
-  end
 end
