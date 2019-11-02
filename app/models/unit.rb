@@ -1,11 +1,11 @@
 class Unit < ApplicationRecord
   belongs_to :army
 
-  UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight]
+  UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight].freeze
 
   def self.generate_default_units(units)
     units.each_with_index do |u, idx|
-      u.times { UNIT_TYPES[idx].constantize.create }
+      u.to_i.times { UNIT_TYPES[idx].constantize.create }
     end
   end
 

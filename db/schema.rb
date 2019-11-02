@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2019_10_31_020815) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "armies", force: :cascade do |t|
@@ -27,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_31_020815) do
 
   create_table "civilizations", force: :cascade do |t|
     t.string "name", null: false
-    t.hstore "default_units", default: {}
+    t.text "default_units", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
