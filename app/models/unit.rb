@@ -1,11 +1,19 @@
 class Unit < ApplicationRecord
   belongs_to :army
 
-  UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight].freeze
+  class << self
+    def generate(units)
+      generate_units(units) unless units.empty?
+    end
 
-  def self.generate_default_units(units)
-    units.each_with_index do |u, idx|
-      u.to_i.times { UNIT_TYPES[idx].constantize.create }
+    private
+
+    UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight].freeze
+
+    def generate_units(units)
+      units.each_with_index do |u, idx|
+        u.to_i.times { UNIT_TYPES[idx].constantize.create }
+      end
     end
   end
 

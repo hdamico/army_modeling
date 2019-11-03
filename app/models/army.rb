@@ -24,7 +24,7 @@ class Army < ApplicationRecord
   private
 
   def generate_army
-    units.generate_default_units(civilization.default_units)
+    units.generate(civilization.default_units)
   end
 
   # def who_is_the_winner?(ally, enemy)
