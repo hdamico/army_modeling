@@ -8,11 +8,9 @@ class Unit < ApplicationRecord
 
     private
 
-    UNIT_TYPES = %w[Units::Archer Units::Spearman Units::Knight].freeze
-
     def generate_units(units)
-      units.each_with_index do |u, idx|
-        u.to_i.times { UNIT_TYPES[idx].constantize.create }
+      units.each do |k, v|
+        v.to_i.times { "Units::#{k}".constantize.create }
       end
     end
   end

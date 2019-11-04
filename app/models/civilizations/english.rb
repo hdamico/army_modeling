@@ -5,7 +5,7 @@ module Civilizations
     private
 
     def set_civilization
-      self.default_units = [5, 8, 15]
+      self.default_units = { 'Archer': 5, 'Spearman': 8, 'Knight': 15}
     end
   end
 end
